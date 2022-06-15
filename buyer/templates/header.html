@@ -97,7 +97,7 @@
             <i class="fas fa-heart text-primary"></i>
             <span class="badge">0</span>
         </a>
-        <a href="" class="btn border">
+        <a href="{% url 'cart'%}" class="btn border">
             <i class="fas fa-shopping-cart text-primary"></i>
             <span class="badge">0</span>
           </a>
@@ -147,17 +147,17 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
-                        <a href="{% url 'index'%}" class="nav-item nav-link active">Home</a>
-                        <a href="{% url 'shop'%}" class="nav-item nav-link">Shop</a>
-                        <a href="{% url 'detail'%}" class="nav-item nav-link">Shop Detail</a>
+                        <a href="{% url 'index'%}" class="nav-item nav-link {% if request.path == "/" %} active {% endif %}">Home</a>
+                        <a href="{% url 'shop'%}" class="nav-item nav-link {% if request.path == "/shop" %} active {% endif %}">Shop</a>
+                        <a href="{% url 'detail'%}" class="nav-item nav-link {% if request.path == "/detail" %} active {% endif %}">Shop Detail</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu rounded-0 m-0">
-                                <a href="{% url 'cart'%}" class="dropdown-item">Shopping Cart</a>
-                                <a href="{% url 'checkout'%}" class="dropdown-item">Checkout</a>
+                                <a href="{% url 'cart'%}" class="dropdown-item {% if request.path == "/cart" %} active {% endif %}">Shopping Cart</a>
+                                <a href="{% url 'checkout'%}" class="dropdown-item {% if request.path == "/checkout" %} active {% endif %}">Checkout</a>
                             </div>
                         </div>
-                        <a href="{% url 'contact'%}" class="nav-item nav-link">Contact</a>
+                        <a href="{% url 'contact'%} " class="nav-item nav-link {% if request.path == "/contact" %} active {% endif %} ">Contact</a>
                     </div>
                     <div class="navbar-nav ml-auto py-0">
                         <a href="" class="nav-item nav-link">Login</a>
@@ -283,47 +283,33 @@
         </div>
         <div class="col-lg-9">
          
-            <nav
-            class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0"
-          >
+          <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
             <a href="" class="text-decoration-none d-block d-lg-none">
-              <h1 class="m-0 display-5 font-weight-semi-bold">
-                <span class="text-primary font-weight-bold border px-3 mr-1"
-                  >E</span
-                >Shopper
-              </h1>
-            </a>   
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
+                <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="navbar-nav mr-auto py-0 collapse navbar-collapse" id="navbarSupportedContent">
-            <a href="{% url 'index'%}" class="nav-item nav-link active">Home</a>
-            <a href="{% url 'shop'%}" class="nav-item nav-link">Shop</a>
-            <a href="{% url 'detail'%}" class="nav-item nav-link"
-              >Shop Detail</a
-            >
-            <div class="nav-item dropdown">
-              <a
-                href="#"
-                class="nav-link dropdown-toggle"
-                data-toggle="dropdown"
-                >Pages</a
-              >
-              <div class="dropdown-menu rounded-0 m-0">
-                <a href="{% url 'cart'%}" class="dropdown-item"
-                  >Shopping Cart</a
-                >
-                <a href="{% url 'checkout'%}" class="dropdown-item">Checkout</a>
-              </div>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav mr-auto py-0">
+                    <a href="{% url 'index'%}" class="nav-item nav-link {% if request.path == "/" %} active {% endif %}">Home</a>
+                    <a href="{% url 'shop'%}" class="nav-item nav-link {% if request.path == "/shop" %} active {% endif %}">Shop</a>
+                    <a href="{% url 'detail'%}" class="nav-item nav-link {% if request.path == "/detail" %} active {% endif %}">Shop Detail</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                        <div class="dropdown-menu rounded-0 m-0">
+                            <a href="{% url 'cart'%}" class="dropdown-item {% if request.path == "/cart" %} active {% endif %}">Shopping Cart</a>
+                            <a href="{% url 'checkout'%}" class="dropdown-item {% if request.path == "/checkout" %} active {% endif %}">Checkout</a>
+                        </div>
+                    </div>
+                    <a href="{% url 'contact'%} " class="nav-item nav-link {% if request.path == "/contact" %} active {% endif %} ">Contact</a>
+                </div>
+                <div class="navbar-nav ml-auto py-0">
+                    <a href="" class="nav-item nav-link">Login</a>
+                    <a href="" class="nav-item nav-link">Register</a>
+                </div>
             </div>
-            <a href="{% url 'contact'%}" class="nav-item nav-link">Contact</a>
-          </div>
-          <div class="navbar-nav ml-auto py-0 collapse navbar-collapse" id="navbarSupportedContent" style="">
-            <a href="" class="nav-item nav-link">Login</a>
-            <a href="" class="nav-item nav-link">Register</a>
-          </div>
-            </div>
-          </nav>
+        </nav>
         </div>        
       </div>
     </div>
