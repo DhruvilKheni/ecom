@@ -25,7 +25,8 @@ from buyer import views
 urlpatterns = [
     
     path('admin/', admin.site.urls),
-    path('',include('buyer.urls'))
+    path('',include('buyer.urls')),
+    path('',include('seller.urls')),
 
 ]
 
