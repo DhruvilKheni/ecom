@@ -1,4 +1,4 @@
-{% load static %}
+{% comment %} {% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -40,21 +40,7 @@
             <div class="card col-lg-4 mx-auto">
               <div class="card-body px-5 py-5">
                 <h3 class="card-title text-left mb-3">Register</h3>
-                <form role="form" action="{% url 'uregister' %}" method="POST">
-                  {% csrf_token %}
-                  <div class="form-group">
-                    <label>Username</label>
-                    <input class="form-control" name="name" placeholder="Name" type="text" required>
-                  </div>
-                  <div class="form-group">
-                    <label>Email</label>
-                    <input class="form-control" name="email" placeholder="Email" type="email" required>
-                    
-                  </div>
-                  <div class="form-group">
-                    <label>Password</label>
-                    <input class="form-control" name="password" placeholder="Password" type="password" required>
-                  </div>
+                
                   <div
                     class="form-group d-flex align-items-center justify-content-between"
                   >
@@ -95,3 +81,97 @@
     <!-- endinject -->
   </body>
 </html>
+ {% endcomment %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Login 05</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link rel="stylesheet" href="{% static 'login/css/style.css' %}" />
+  </head>
+  <body>
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-7 col-lg-5">
+            <div class="wrap">
+              <div class="img" style="background-color: #d19c97"></div>
+              <div class="login-wrap p-4 p-md-5">
+                <div class="d-flex">
+                  <div class="w-100">
+                    <h3 class="mb-4">Sign In</h3>
+                  </div>
+                </div>
+                <form role="form" action="{% url 'uregister' %}" method="POST">
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <label>Username</label>
+                    <input class="form-control" name="name" placeholder="Name" type="text" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input class="form-control" name="email" placeholder="Email" type="email" required>
+                    
+                  </div>
+                  <div class="form-group">
+                    <label>Password</label>
+                    <input class="form-control" name="password" placeholder="Password" type="password" required>
+                  </div>
+                  <div class="form-group">
+                    <button
+                      type="submit"
+                      class="form-control btn btn-primary rounded submit px-3"
+                    >
+                      Sign In
+                    </button>
+                  </div>
+                  <div class="form-group d-md-flex">
+                    <div class="w-50 text-left">
+                      <label class="checkbox-wrap checkbox-primary mb-0"
+                        >Remember Me
+                        <input type="checkbox" checked />
+                        <span class="checkmark"></span>
+                      </label>
+                    </div>
+                    <div class="w-50 text-md-right">
+                      <a href="#">Forgot Password</a>
+                    </div>
+                  </div>
+                </form>
+
+                <p class="text-center">
+                  Not a member?
+                  <a href="{% url 'ulogin' %}">Sign Up</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="{% static 'login/js/jquery.min.js' %}"></script>
+    <script src="{% static 'login/js/popper.js' %}"></script>
+    <script src="{% static 'login/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'login/js/main.js' %}"></script>
+  </body>
+</html>
+
+{% comment %} yewomi1827@giftcv.com {% endcomment %}
+{% comment %} jammie.jaquay@findicing.com {% endcomment %}
