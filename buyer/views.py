@@ -11,7 +11,11 @@ from datetime import datetime
 
 # Create your views here.
 def index(request):
-    uid = User.objects.get(email=request.session['email'])
+    try:
+        uid = User.objects.get(email=request.session['email'])
+        return render(request,'index.html',{'uid':uid})
+    except:
+        pass
     
     return render(request,'index.html')
 
@@ -68,6 +72,10 @@ def otp(request):
         else:
             msg = 'Incorrect OTP'
             return render(request,'otp.html',{'otp':request.POST['otp'],'msg':msg})
+
+def ulogout(request):
+    del request.session['email']
+    return redirect('ulogin')
 
 def checkout(request):
     
