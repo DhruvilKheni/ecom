@@ -13,10 +13,12 @@ from datetime import datetime
 
 
 def index(request):
+    if request.method == 'POST':
+        print(request.POST.get('pid'))
     try:
         uid = User.objects.get(email=request.session['email'])
         products = product.objects.all()
-        return render(request, 'index.html', {'uid': uid},{'products': products})
+        return render(request, 'index.html', {'uid': uid, 'products': products})
     except:
         pass
         products = product.objects.all()
@@ -116,6 +118,7 @@ def shop(request):
 
 
 def cart(request):
+
     try:
         uid = User.objects.get(email=request.session['email'])
         return render(request, 'cart.html', {'uid': uid})
