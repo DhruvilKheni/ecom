@@ -15,11 +15,12 @@ from datetime import datetime
 def index(request):
     try:
         uid = User.objects.get(email=request.session['email'])
-        return render(request, 'index.html', {'uid': uid})
+        products = product.objects.all()
+        return render(request, 'index.html', {'uid': uid},{'products': products})
     except:
         pass
-
-    return render(request, 'index.html')
+        products = product.objects.all()
+    return render(request, 'index.html', {'products': products})
 
 
 def ulogin(request):
