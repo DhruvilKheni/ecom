@@ -34,13 +34,17 @@
           <form action="{% url 'cart'%}" method="post">
             {% csrf_token %}
             <tr>
+              <input
+                type="text"
+                value="{{cart.id}}"
+                name="id"
+                style="display: none"
+              />
               <td class="align-middle">
                 <img src="{{cart.product.ipic}}" alt="" style="width: 50px" />
                 {{cart.product.pname}}
               </td>
-              <td class="align-middle" id="{{cart.id}}-price">
-                &#x20B9; {{cart.product.price}}
-              </td>
+              <td class="align-middle">&#x20B9; {{cart.product.price}}</td>
               <td class="align-middle">
                 <div class="input-group quantity mx-auto" style="width: 100px">
                   <div class="input-group-btn">
@@ -51,7 +55,6 @@
                       <i class="fa fa-minus"></i>
                     </button>
                   </div>
-                  <input type="text" name="id" value="{{cart.id}}" />
                   <input
                     type="text"
                     name="qty"
@@ -68,11 +71,9 @@
                   </div>
                 </div>
               </td>
-              <td class="align-middle total" id="{{cart.id}}-total">
-                &#x20B9;
-              </td>
+              <td class="align-middle total">&#x20B9; {{cart.total}}</td>
               <td class="align-middle">
-                <button class="btn btn-sm btn-primary">
+                <button class="btn btn-sm btn-primary" type="submit">
                   <i class="fa fa-times"></i>
                 </button>
               </td>

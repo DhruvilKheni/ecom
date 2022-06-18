@@ -27,7 +27,8 @@ def index(request):
         Cart.objects.create(
             product=product,
             quantity=quantity,
-            customer=customer
+            customer=customer,
+            total=float(product.price*quantity),
         )
         return render(request, 'index.html', {'uid': uid, 'products': products})
         # except Exception as e:
@@ -139,21 +140,23 @@ def shop(request):
 def cart(request):
     if request.method == 'POST':
         try:
-            # updet = Cart.objects.filter(pk=request.POST['id'])
-            # updet.quantity = request.POST['qty']
-            # updet.save()
+            item = Cart.objects.get(id=request.POST['id'])
+            if item.quantity == int(request.POST['qty']):
+                Cart.objects.filter(pk=request.POST['id']).delete()
+            else:
+                item.quantity = int(request.POST['qty'])
+                item.total = item.product.price*item.quantity
+                item.save()
             uid = User.objects.get(email=request.session['email'])
             carts = Cart.objects.filter(customer=uid)
-            print(carts)
             return render(request, 'cart.html', {'uid': uid, 'carts': carts})
         except:
             pass
-            return render(request, 'cart.html')
+            return render(request, 'error-404.html')
     else:
         try:
             uid = User.objects.get(email=request.session['email'])
             carts = Cart.objects.filter(customer=uid)
-            print(carts)
             return render(request, 'cart.html', {'uid': uid, 'carts': carts})
         except:
             pass

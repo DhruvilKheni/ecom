@@ -37,6 +37,7 @@ class Cart(models.Model):
     id = models.CharField(
         max_length=100, primary_key=True, blank=True, unique=True, default=uuid.uuid4())
     quantity = models.IntegerField(default=1)
+    total = models.DecimalField(default=0, decimal_places=2, max_digits=8)
     address = models.CharField(max_length=50, default='', blank=True)
     phone = models.CharField(max_length=50, default='', blank=True)
     date = models.DateField(default=datetime.datetime.today)
