@@ -2,7 +2,7 @@ from asyncio import events
 from urllib import request
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
-from sympy import cartes
+
 from .models import *
 from random import choices, randrange
 from django.conf import settings
@@ -137,16 +137,27 @@ def shop(request):
 
 
 def cart(request):
-
-    try:
-        uid = User.objects.get(email=request.session['email'])
-        carts = Cart.objects.filter(customer=uid)
-        print(carts)
-        return render(request, 'cart.html', {'uid': uid, 'carts': carts})
-    except:
-        pass
-
-    return render(request, 'cart.html')
+    if request.method == 'POST':
+        try:
+            # updet = Cart.objects.filter(pk=request.POST['id'])
+            # updet.quantity = request.POST['qty']
+            # updet.save()
+            uid = User.objects.get(email=request.session['email'])
+            carts = Cart.objects.filter(customer=uid)
+            print(carts)
+            return render(request, 'cart.html', {'uid': uid, 'carts': carts})
+        except:
+            pass
+            return render(request, 'cart.html')
+    else:
+        try:
+            uid = User.objects.get(email=request.session['email'])
+            carts = Cart.objects.filter(customer=uid)
+            print(carts)
+            return render(request, 'cart.html', {'uid': uid, 'carts': carts})
+        except:
+            pass
+            return render(request, 'cart.html')
 
 
 def contact(request):
