@@ -2,6 +2,7 @@ from asyncio import events
 from urllib import request
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
+from sympy import cartes
 from .models import *
 from random import choices, randrange
 from django.conf import settings
@@ -14,15 +15,33 @@ from datetime import datetime
 
 def index(request):
     if request.method == 'POST':
-        print(request.POST.get('pid'))
-    try:
+        # try:
         uid = User.objects.get(email=request.session['email'])
-        products = product.objects.all()
+        products = Product.objects.all()
+        pname = request.POST.get('pname')
+
+        product = Product.objects.get(pname=pname)
+        quantity = 1
+        customer = uid
+
+        Cart.objects.create(
+            product=product,
+            quantity=quantity,
+            customer=customer
+        )
         return render(request, 'index.html', {'uid': uid, 'products': products})
-    except:
-        pass
-        products = product.objects.all()
-    return render(request, 'index.html', {'products': products})
+        # except Exception as e:
+        #     return HttpResponse(f"<h1>{e}</h1>")
+    else:
+        try:
+            uid = User.objects.get(email=request.session['email'])
+            carts = Cart.objects.all()
+            products = Product.objects.all()
+            return render(request, 'index.html', {'uid': uid, 'products': products, "carts": carts})
+        except:
+            pass
+            products = Product.objects.all()
+        return render(request, 'index.html', {'products': products})
 
 
 def ulogin(request):
@@ -121,7 +140,9 @@ def cart(request):
 
     try:
         uid = User.objects.get(email=request.session['email'])
-        return render(request, 'cart.html', {'uid': uid})
+        carts = Cart.objects.filter(customer=uid)
+        print(carts)
+        return render(request, 'cart.html', {'uid': uid, 'carts': carts})
     except:
         pass
 

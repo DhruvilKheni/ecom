@@ -1,5 +1,7 @@
 from django.db import models
 from calendar import month
+import uuid
+import datetime
 
 # Create your models here.
 
@@ -14,7 +16,7 @@ class User(models.Model):
         return self.name
 
 
-class product(models.Model):
+class Product(models.Model):
 
     categori = models.CharField(max_length=50)
     pname = models.CharField(max_length=50)
@@ -28,11 +30,24 @@ class product(models.Model):
 
 
 class Cart(models.Model):
-
-    pid = models.ForeignKey(product, on_delete=models.CASCADE)
-    pqty = models.IntegerField()
-    # pname = models.CharField(max_length=20)
-    cby = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product,
+                                on_delete=models.CASCADE)
+    customer = models.ForeignKey(User,
+                                 on_delete=models.CASCADE)
+    id = models.CharField(
+        max_length=100, primary_key=True, blank=True, unique=True, default=uuid.uuid4())
+    quantity = models.IntegerField(default=1)
+    address = models.CharField(max_length=50, default='', blank=True)
+    phone = models.CharField(max_length=50, default='', blank=True)
+    date = models.DateField(default=datetime.datetime.today)
+    status = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.cby
+        return self.customer.name
+
+    def placeOrder(self):
+        self.save()
+
+    @staticmethod
+    def get_orders_by_customer(customer_id):
+        return Cart.objects.filter(customer=customer_id).order_by('-date')
