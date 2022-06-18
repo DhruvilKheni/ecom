@@ -139,9 +139,9 @@ def shop(request):
 def cart(request):
     if request.method == 'POST':
         try:
-            item = Cart.objects.get(id=request.POST['id'])
+            item = Cart.objects.get(cid=request.POST['cid'])
             if item.quantity == int(request.POST['qty']):
-                Cart.objects.filter(pk=request.POST['id']).delete()
+                Cart.objects.filter(pk=request.POST['cid']).delete()
             else:
                 item.quantity = int(request.POST['qty'])
                 item.total = item.product.price*item.quantity
