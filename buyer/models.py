@@ -44,7 +44,7 @@ class Cart(models.Model):
     status = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.customer.name
+        return self.cid
 
     def placeOrder(self):
         self.save()

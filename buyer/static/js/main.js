@@ -83,13 +83,11 @@
   });
 
   // Product Quantity
-  /* $(".quantity button").on("click", function () {
+  $(".quantity button").on("click", function () {
     var button = $(this);
     var oldValue = button.parent().parent().find("input").val();
     if (button.hasClass("btn-plus")) {
       var newVal = parseFloat(oldValue) + 1;
-      let total = $(this).parent().find(".total").val();
-      console.log(total);
     } else {
       if (oldValue > 0) {
         var newVal = parseFloat(oldValue) - 1;
@@ -98,5 +96,5 @@
       }
     }
     button.parent().parent().find("input").val(newVal);
-  }); */
+  });
 })(jQuery);

@@ -1,8 +1,8 @@
+import uuid
 from asyncio import events
 from urllib import request
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
-
 from .models import *
 from random import choices, randrange
 from django.conf import settings
@@ -29,21 +29,21 @@ def index(request):
             quantity=quantity,
             customer=customer,
             total=float(product.price*quantity),
+            cid=uuid.uuid4()
         )
-        carts = Cart.objects.all()
-
+        carts = Cart.objects.filter(customer=uid)
         return render(request, 'index.html', {'uid': uid, 'products': products, 'carts': carts})
         # except Exception as e:
         #     return HttpResponse(f"<h1>{e}</h1>")
     else:
-        try:
-            uid = User.objects.get(email=request.session['email'])
-            carts = Cart.objects.all()
-            products = Product.objects.all()
-            return render(request, 'index.html', {'uid': uid, 'products': products, "carts": carts})
-        except:
-            products = Product.objects.all()
-            return render(request, 'index.html', {'products': products})
+        # try:
+        uid = User.objects.get(email=request.session['email'])
+        carts = Cart.objects.filter(customer=uid)
+        products = Product.objects.all()
+        return render(request, 'index.html', {'uid': uid, 'products': products, "carts": carts})
+        # except:
+        #     products = Product.objects.all()
+        #     return render(request, 'index.html', {'products': products})
 
 
 def ulogin(request):
@@ -140,8 +140,9 @@ def cart(request):
     if request.method == 'POST':
         try:
             item = Cart.objects.get(cid=request.POST['cid'])
+
             if item.quantity == int(request.POST['qty']):
-                Cart.objects.filter(pk=request.POST['cid']).delete()
+                Cart.objects.filter(cid=request.POST['cid']).delete()
             else:
                 item.quantity = int(request.POST['qty'])
                 item.total = item.product.price*item.quantity
@@ -150,7 +151,6 @@ def cart(request):
             carts = Cart.objects.filter(customer=uid)
             return render(request, 'cart.html', {'uid': uid, 'carts': carts})
         except:
-            pass
             return render(request, 'error-404.html')
     else:
         try:
