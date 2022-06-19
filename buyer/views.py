@@ -3,6 +3,8 @@ from asyncio import events
 from urllib import request
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
+
+from buyer.helper.cart import add_to_cart
 from .models import *
 from random import choices, randrange
 from django.conf import settings
@@ -140,11 +142,9 @@ def detail(request):
 
 def shop(request):
     try:
-        uid = User.objects.get(email=request.session['email'])
-        carts = Cart.objects.filter(customer=uid)
-
-        products = Product.objects.all()
-        return render(request, 'shop.html', {'uid': uid, 'carts': carts, 'products': products, })
+        filter = add_to_cart(request)
+        print(filter)
+        return render(request, 'shop.html', filter)
     except:
         return render(request, 'shop.html')
 
@@ -163,12 +163,6 @@ def cart(request):
                 item.save()
             else:
                 Cart.objects.filter(cid=request.POST['cid']).delete()
-            # if item.quantity == int(request.POST['qty']):
-            #     Cart.objects.filter(cid=request.POST['cid']).delete()
-            # else:
-            #     item.quantity = int(request.POST['qty'])
-            #     item.total = item.product.price*item.quantity
-            #     item.save()
             uid = User.objects.get(email=request.session['email'])
             carts = Cart.objects.filter(customer=uid)
             products = Product.objects.all()
