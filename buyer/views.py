@@ -144,13 +144,22 @@ def cart(request):
     if request.method == 'POST':
         try:
             item = Cart.objects.get(cid=request.POST['cid'])
-
-            if item.quantity == int(request.POST['qty']):
-                Cart.objects.filter(cid=request.POST['cid']).delete()
-            else:
-                item.quantity = int(request.POST['qty'])
+            if request.POST['count'] == 'plus':
+                item.quantity = item.quantity+1
                 item.total = item.product.price*item.quantity
                 item.save()
+            elif request.POST['count'] == 'minus':
+                item.quantity = item.quantity-1
+                item.total = item.product.price*item.quantity
+                item.save()
+            else:
+                Cart.objects.filter(cid=request.POST['cid']).delete()
+            # if item.quantity == int(request.POST['qty']):
+            #     Cart.objects.filter(cid=request.POST['cid']).delete()
+            # else:
+            #     item.quantity = int(request.POST['qty'])
+            #     item.total = item.product.price*item.quantity
+            #     item.save()
             uid = User.objects.get(email=request.session['email'])
             carts = Cart.objects.filter(customer=uid)
             products = Product.objects.all()

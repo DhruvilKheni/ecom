@@ -4,14 +4,14 @@ from django import template
 register = template.Library()
 
 
-# @register.filter(name="increment")
-# def increment(qty):
-#     return qty+1
+@register.filter(name="increment")
+def increment(qty):
+    return qty+1
 
 
-# @register.filter(name="decrement")
-# def decrement(qty):
-#     return qty-1
+@register.filter(name="decrement")
+def decrement(qty):
+    return qty-1
 
 
 @register.filter(name="get_all_total")

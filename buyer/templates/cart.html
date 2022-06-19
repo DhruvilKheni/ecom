@@ -30,16 +30,10 @@
           </tr>
         </thead>
         <tbody class="align-middle">
-          {% for cart in carts %}
+          {% for cart in carts %} {% comment %}
           <form action="{% url 'cart'%}" method="post">
-            {% csrf_token %}
+            {% csrf_token %} {% endcomment %}
             <tr>
-              <input
-                type="text"
-                value="{{cart.cid}}"
-                name="cid"
-                style="display: none"
-              />
               <td class="align-middle">
                 <img src="{{cart.product.ipic}}" alt="" style="width: 50px" />
                 {{cart.product.pname}}
@@ -48,12 +42,27 @@
               <td class="align-middle">
                 <div class="input-group quantity mx-auto" style="width: 100px">
                   <div class="input-group-btn">
-                    <button
-                      class="btn btn-sm btn-primary btn-minus"
-                      type="submit"
-                    >
-                      <i class="fa fa-minus"></i>
-                    </button>
+                    <form action="{% url 'cart'%}" method="post">
+                      {% csrf_token %}
+                      <input
+                        type="text"
+                        value="{{cart.cid}}"
+                        name="cid"
+                        style="display: none"
+                      />
+                      <input
+                        type="text"
+                        value="minus"
+                        name="count"
+                        style="display: none"
+                      />
+                      <button
+                        class="btn btn-sm btn-primary btn-minus"
+                        type="submit"
+                      >
+                        <i class="fa fa-minus"></i>
+                      </button>
+                    </form>
                   </div>
                   <input
                     type="text"
@@ -62,24 +71,55 @@
                     value="{{cart.quantity}}"
                   />
                   <div class="input-group-btn">
-                    <button
-                      class="btn btn-sm btn-primary btn-plus"
-                      type="submit"
-                    >
-                      <i class="fa fa-plus"></i>
-                    </button>
+                    <form action="{% url 'cart'%}" method="post">
+                      {% csrf_token %}
+                      <input
+                        type="text"
+                        value="{{cart.cid}}"
+                        name="cid"
+                        style="display: none"
+                      />
+                      <input
+                        type="text"
+                        value="plus"
+                        name="count"
+                        style="display: none"
+                      />
+                      <button
+                        class="btn btn-sm btn-primary btn-plus"
+                        type="submit"
+                      >
+                        <i class="fa fa-plus"></i>
+                      </button>
+                    </form>
                   </div>
                 </div>
               </td>
               <td class="align-middle total">&#x20B9; {{cart.total}}</td>
               <td class="align-middle">
-                <button class="btn btn-sm btn-primary" type="submit">
-                  <i class="fa fa-times"></i>
-                </button>
+                <form action="{% url 'cart'%}" method="post">
+                  {% csrf_token %}
+                  <input
+                    type="text"
+                    value="{{cart.cid}}"
+                    name="cid"
+                    style="display: none"
+                  />
+                  <input
+                    type="text"
+                    value="delete"
+                    name="count"
+                    style="display: none"
+                  />
+                  <button class="btn btn-sm btn-primary" type="submit">
+                    <i class="fa fa-times"></i>
+                  </button>
+                </form>
               </td>
             </tr>
+            {% comment %}
           </form>
-          {% endfor %}
+          {% endcomment %} {% endfor %}
         </tbody>
       </table>
     </div>

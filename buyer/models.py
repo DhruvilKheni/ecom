@@ -27,7 +27,7 @@ class Product(models.Model):
     ipic = models.FileField(upload_to='product', default='avatar.jpg')
 
     def __str__(self):
-        return self.pid
+        return self.pname
 
 
 class Cart(models.Model):
@@ -45,7 +45,7 @@ class Cart(models.Model):
     status = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.cid
+        return self.product.pname
 
     def placeOrder(self):
         self.save()
