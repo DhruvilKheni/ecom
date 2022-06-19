@@ -19,3 +19,13 @@ def get_all_total(carts, ship=0):
     for item in carts:
         total += item.product.price*item.quantity
     return total+ship
+
+
+@register.filter(name="filter_categories")
+def filter_categories(products, category):
+    count = 0
+    for product in products:
+        if product.category.name == category:
+            count = count+1
+
+    return count
