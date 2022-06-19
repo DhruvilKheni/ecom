@@ -18,15 +18,16 @@ class User(models.Model):
 
 class Product(models.Model):
 
-    categori = models.CharField(max_length=50)
+    category = models.CharField(max_length=50)
     pname = models.CharField(max_length=50)
-    pid = models.CharField(max_length=20)
+    pid = models.CharField(
+        primary_key=True, max_length=100, default=uuid.uuid4())
     price = models.IntegerField()
     ptype = models.CharField(max_length=50)
     ipic = models.FileField(upload_to='product', default='avatar.jpg')
 
     def __str__(self):
-        return self.pname
+        return self.pid
 
 
 class Cart(models.Model):

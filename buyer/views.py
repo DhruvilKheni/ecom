@@ -113,7 +113,8 @@ def checkout(request):
         uid = User.objects.get(email=request.session['email'])
         carts = Cart.objects.filter(customer=uid)
 
-        return render(request, 'checkout.html', {'uid': uid, 'carts': carts})
+        products = Product.objects.all()
+        return render(request, 'checkout.html', {'uid': uid, 'carts': carts, 'products': products, })
     except:
         return render(request, 'checkout.html')
 
@@ -122,7 +123,8 @@ def detail(request):
     try:
         uid = User.objects.get(email=request.session['email'])
         carts = Cart.objects.filter(customer=uid)
-        return render(request, 'detail.html', {'uid': uid, 'carts': carts})
+        products = Product.objects.all()
+        return render(request, 'detail.html', {'uid': uid, 'carts': carts, 'products': products, })
     except:
         return render(request, 'detail.html')
 
@@ -131,7 +133,9 @@ def shop(request):
     try:
         uid = User.objects.get(email=request.session['email'])
         carts = Cart.objects.filter(customer=uid)
-        return render(request, 'shop.html', {'uid': uid, 'carts': carts})
+
+        products = Product.objects.all()
+        return render(request, 'shop.html', {'uid': uid, 'carts': carts, 'products': products, })
     except:
         return render(request, 'shop.html')
 
@@ -149,14 +153,16 @@ def cart(request):
                 item.save()
             uid = User.objects.get(email=request.session['email'])
             carts = Cart.objects.filter(customer=uid)
-            return render(request, 'cart.html', {'uid': uid, 'carts': carts})
+            products = Product.objects.all()
+            return render(request, 'cart.html', {'uid': uid, 'carts': carts, 'products': products, })
         except:
             return render(request, 'error-404.html')
     else:
         try:
             uid = User.objects.get(email=request.session['email'])
             carts = Cart.objects.filter(customer=uid)
-            return render(request, 'cart.html', {'uid': uid, 'carts': carts})
+            products = Product.objects.all()
+            return render(request, 'cart.html', {'uid': uid, 'carts': carts, 'products': products, })
         except Exception as e:
             return HttpResponse(f"<h1>{e}</h1>")
             # return render(request, 'cart.html')
@@ -166,8 +172,8 @@ def contact(request):
     try:
         uid = User.objects.get(email=request.session['email'])
         carts = Cart.objects.filter(customer=uid)
-
-        return render(request, 'contact.html', {'uid': uid, 'carts': carts})
+        products = Product.objects.all()
+        return render(request, 'contact.html', {'uid': uid, 'carts': carts, 'products': products, })
     except:
         pass
 
