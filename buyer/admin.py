@@ -10,4 +10,4 @@ admin.site.register(Product)
 
 admin.site.register(Cart)
 
-admin.site.register(Categoriy)
+admin.site.register(Category)

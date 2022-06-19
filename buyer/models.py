@@ -16,28 +16,28 @@ class User(models.Model):
         return self.name
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=20)
+    id = models.IntegerField(primary_key=True, default=1)
+
+    def __str__(self):
+        return self.name
+
+
 class Product(models.Model):
 
     pname = models.CharField(max_length=50)
     pid = models.CharField(
         primary_key=True, max_length=100, default=uuid.uuid4())
     price = models.IntegerField()
-    # categoriy = models.ForeignKey(Categoriy,
-    #                               on_delete=models.CASCADE)
-    pdes = models.CharField(max_length=200, default='')
-    ptype = models.CharField(max_length=50)
+    category = models.ForeignKey(Category,
+                                 on_delete=models.CASCADE)
+    price = models.CharField(max_length=200, default='')
+    type = models.CharField(max_length=50)
     ipic = models.FileField(upload_to='product', default='avatar.jpg')
 
     def __str__(self):
         return self.pname
-
-
-class Categoriy(models.Model):
-    name = models.CharField(max_length=20)
-    id = models.IntegerField(primary_key=True, default=1)
-
-    def __str__(self):
-        return self.name
 
 
 class Cart(models.Model):

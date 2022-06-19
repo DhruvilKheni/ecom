@@ -1,5 +1,4 @@
 {% extends 'header.html' %} {% load static %} {% block content %}
-
 <!-- Page Header Start -->
 <div class="container-fluid bg-secondary mb-5">
   <div
@@ -247,9 +246,21 @@
             <div
               class="card-header product-img position-relative overflow-hidden bg-transparent border p-0"
             >
-              <div class="conatiner" style="background-color"></div>
-
-              <img class="img-fluid w-100" src="{{product.ipic}}" alt="" />
+              <form
+                action="/shop/{{product.pid}}/"
+                method="post"
+                id="{{product.pid}}"
+              >
+                {% csrf_token %}
+                <div
+                  class="card"
+                  style="background-color: #d19c97; height: 25vh"
+                  id="{{product.pid}}-btn"
+                >
+                  <input type="text" value="{{product.pid}}" />
+                  <img class="img-fluid w-100" src="{{product.ipic}}" alt="" />
+                </div>
+              </form>
             </div>
             <div
               class="card-body border-left border-right text-center p-0 pt-4 pb-3"

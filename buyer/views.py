@@ -141,12 +141,12 @@ def detail(request):
 
 
 def shop(request):
-    try:
-        filter = add_to_cart(request)
-        print(filter)
-        return render(request, 'shop.html', filter)
-    except:
-        return render(request, 'shop.html')
+    # try:
+    filter = add_to_cart(request)
+    print(filter)
+    return render(request, 'shop.html', filter)
+    # except:
+    #     return render(request, 'shop.html')
 
 
 def cart(request):
