@@ -19,9 +19,9 @@ def index(request):
     if request.method == 'POST':
         try:
             uid = User.objects.get(email=request.session['email'])
+            categories = Category.objects.all()
             products = Product.objects.all()
             pid = request.POST.get('pid')
-
             product = Product.objects.get(pid=pid)
             quantity = 1
             customer = uid
@@ -43,7 +43,7 @@ def index(request):
                     cid=uuid.uuid4()
                 )
             carts = Cart.objects.filter(customer=uid)
-            return render(request, 'index.html', {'uid': uid, 'products': products, 'carts': carts})
+            return render(request, 'index.html', {'uid': uid, 'products': products, 'carts': carts, 'categories': categories})
         except Exception as e:
             return render(request, 'error-404.html')
     else:
@@ -51,10 +51,14 @@ def index(request):
             uid = User.objects.get(email=request.session['email'])
             carts = Cart.objects.filter(customer=uid)
             products = Product.objects.all()
-            return render(request, 'index.html', {'uid': uid, 'products': products, "carts": carts})
+            categories = Category.objects.all()
+
+            return render(request, 'index.html', {'uid': uid, 'products': products, 'carts': carts, 'categories': categories})
+
         except:
+            categories = Category.objects.all()
             products = Product.objects.all()
-            return render(request, 'index.html', {'products': products})
+            return render(request, 'index.html', {'products': products, 'categories': categories})
 
 
 def ulogin(request):
@@ -170,14 +174,14 @@ def cart(request):
         except:
             return render(request, 'error-404.html')
     else:
-        try:
-            uid = User.objects.get(email=request.session['email'])
-            carts = Cart.objects.filter(customer=uid)
-            products = Product.objects.all()
-            return render(request, 'cart.html', {'uid': uid, 'carts': carts, 'products': products, })
-        except Exception as e:
-            return HttpResponse(f"<h1>{e}</h1>")
-            # return render(request, 'cart.html')
+        # try:
+        uid = User.objects.get(email=request.session['email'])
+        carts = Cart.objects.filter(customer=uid)
+        products = Product.objects.all()
+        return render(request, 'cart.html', {'uid': uid, 'carts': carts, 'products': products, })
+        # except Exception as e:
+        #     return HttpResponse(f"<h1>{e}</h1>")
+        # return render(request, 'cart.html')
 
 
 def contact(request):

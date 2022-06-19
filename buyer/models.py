@@ -32,8 +32,8 @@ class Product(models.Model):
     price = models.IntegerField()
     category = models.ForeignKey(Category,
                                  on_delete=models.CASCADE)
-    price = models.CharField(max_length=200, default='')
-    type = models.CharField(max_length=50)
+    pdes = models.CharField(max_length=200, default='')
+    ptype = models.CharField(max_length=50)
     ipic = models.FileField(upload_to='product', default='avatar.jpg')
 
     def __str__(self):
