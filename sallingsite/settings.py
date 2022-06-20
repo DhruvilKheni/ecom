@@ -70,6 +70,7 @@ TEMPLATES = [
             ],
             'builtins': [
                 'buyer.templatetags.cart',
+                'seller.templatetags.seller',
             ]
         },
     },

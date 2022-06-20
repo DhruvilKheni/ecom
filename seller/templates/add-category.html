@@ -1,0 +1,102 @@
+{% extends 'header.html' %} {% load static %} {% block content %}
+<!-- Page Header Start -->
+<!-- Add New Product Stylesheet -->
+<link href="{% static 'css/templatemo-style.css' %}" rel="stylesheet" />
+    
+<div class="container-fluid bg-secondary mb-5">
+  <div
+    class="d-flex flex-column align-items-center justify-content-center"
+    style="min-height: 300px"
+  >
+    <h1 class="font-weight-semi-bold text-uppercase mb-3">Add New Category</h1>
+    <div class="d-inline-flex">
+      <p class="m-0"><a href="{%url 'index' %}">Home</a></p>
+      <p class="m-0 px-2">-</p>
+      <p class="m-0">Add New Category</p>
+    </div>
+  </div>
+</div>
+<!-- Page Header End -->
+
+<div class="container tm-mt-big tm-mb-big ">
+  <div class="row">
+    <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+      <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="tm-block-title d-inline-block">Add Product</h2>
+          </div>
+        </div>
+        <div class="row tm-edit-product-row">
+          <div class="col-xl-6 col-lg-6 col-md-12">
+            <form action="{% url 'addcategory' %}" enctype="multipart/form-data" class="tm-edit-product-form" method="post">
+              {% csrf_token %}
+                
+              <div class="form-group mb-3">
+                <label
+                  for="name"
+                  >Category Name
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  class="form-control validate"                  
+                  required
+                />
+                <div id="category-filter"></div>
+              
+              </div>
+              <div class="form-group mb-3">
+                <label
+                  for="category"
+                  > Available Category</label
+                >
+               <div class="selection">
+                <select
+                class="custom-select tm-select-accounts"
+                id="category"
+                name="category"
+              >
+              {% for category in categories %}
+                <option value="{{category.name}}">{{category.name}}</option>                
+              {% endfor %}
+              </select>
+               </div>
+              </div>
+             
+              
+          </div>
+          <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+            <div class="tm-product-img-dummy mx-auto">
+              <i
+                class="fas fa-cloud-upload-alt tm-upload-icon"
+                onclick="document.getElementById('fileInput').click();"
+              ></i>
+            </div>
+            <div class="custom-file mt-3 mb-3">
+              <input id="fileInput" type="file" name="image" style="display:none;" />
+              <input
+                type="button"
+                class="btn btn-primary btn-border btn-block mx-auto"
+                value="UPLOAD CATEGORY IMAGE"
+                onclick="document.getElementById('fileInput').click();"
+              />
+            </div>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-border btn-block text-uppercase">Add Category Now</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-primary back-to-top"
+  ><i class="fa fa-angle-double-up"></i
+></a>
+
+{% endblock %}

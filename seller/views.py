@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from buyer.models import *
 import uuid
+from . import forms
 # Create your views here
 
 
@@ -40,3 +41,20 @@ def addproduct(request):
         return render(request, 'add-product.html', {'categories': categories})
     else:
         return render(request, 'add-product.html', {'categories': categories})
+
+
+def addcategory(request):
+    categories = Category.objects.all()
+    if request.method == 'POST':
+        print(request.FILES)
+        category = Category()
+        category.name = request.POST['name']
+        category.id = uuid.uuid4()
+        if len(request.FILES) != 0:
+            category.ipic = request.FILES['image']
+
+        category.save()
+        categories = Category.objects.all()
+        return render(request, 'add-category.html', {'categories': categories, 'forms': forms.CategotyForm()})
+    else:
+        return render(request, 'add-category.html', {'categories': categories, 'forms': forms.CategotyForm()})

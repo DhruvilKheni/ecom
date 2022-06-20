@@ -18,7 +18,9 @@ class User(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=20)
-    id = models.IntegerField(primary_key=True, default=1)
+    ipic = models.ImageField(upload_to='media/category', default='avatar.jpg')
+    id = models.CharField(
+        primary_key=True, max_length=100, default=uuid.uuid4())
 
     def __str__(self):
         return self.name
@@ -34,7 +36,7 @@ class Product(models.Model):
                                  on_delete=models.CASCADE)
     pdes = models.CharField(max_length=200, default='')
     ptype = models.CharField(max_length=50)
-    ipic = models.ImageField(upload_to='product', default='avatar.jpg')
+    ipic = models.ImageField(upload_to='media/product', default='avatar.jpg')
 
     def __str__(self):
         return self.pname
