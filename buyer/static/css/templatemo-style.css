@@ -1,0 +1,37 @@
+.validate {
+  padding: 1rem;
+  border: 2px solid;
+}
+
+.validate:hover {
+  padding: 1rem;
+  border: 2px solid;
+}
+
+.selection {
+  border: 2px solid;
+}
+
+.btn-border {
+  border: 2px solid;
+}
+
+.tm-product-img-dummy {
+  margin-top: 2rem;
+  height: 25vh;
+  background-color: #e7d0ce;
+  border: 2px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tm-upload-icon {
+  background: #ffffff;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  text-align: center;
+  padding-top: 15px;
+  font-size: 22px;
+}

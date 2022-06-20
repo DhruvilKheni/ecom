@@ -34,7 +34,7 @@ class Product(models.Model):
                                  on_delete=models.CASCADE)
     pdes = models.CharField(max_length=200, default='')
     ptype = models.CharField(max_length=50)
-    ipic = models.FileField(upload_to='product', default='avatar.jpg')
+    ipic = models.ImageField(upload_to='product', default='avatar.jpg')
 
     def __str__(self):
         return self.pname
