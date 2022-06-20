@@ -1,5 +1,5 @@
 from django import template
-from rx import for_in
+
 
 register = template.Library()
 

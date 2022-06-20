@@ -41,6 +41,14 @@ class Product(models.Model):
     def __str__(self):
         return self.pname
 
+    @staticmethod
+    def get_all_products_by_categotyid(category_id):
+        if category_id:
+            return Product.objects.filter(category=category_id)
+
+        else:
+            return Product.objects.all()
+
 
 class Cart(models.Model):
     product = models.ForeignKey(Product,
