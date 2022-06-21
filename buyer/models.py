@@ -2,6 +2,7 @@ from django.db import models
 from calendar import month
 import uuid
 import datetime
+import django.contrib.postgres.fields as fields
 
 # Create your models here.
 
@@ -42,10 +43,9 @@ class Product(models.Model):
         return self.pname
 
     @staticmethod
-    def get_all_products_by_categotyid(category_id):
-        if category_id:
-            return Product.objects.filter(category=category_id)
-
+    def get_all_products_by_categoty(category):
+        if category:
+            return Product.objects.filter(category=category)
         else:
             return Product.objects.all()
 

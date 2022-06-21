@@ -50,15 +50,8 @@ def index(request):
         try:
             uid = User.objects.get(email=request.session['email'])
             carts = Cart.objects.filter(customer=uid)
-            products = None
+            products = Product.objects.all()
             categories = Category.objects.all()
-            categoryID = request.GET['category']
-# aa joje loging kara vager aama totel product nathi aav tu caregoriy ma filter to thay j che
-            if categories:
-                products = Product.get_all_products_by_categotyid(categoryID)
-
-            else:
-                products = Product.objects.all()
 
             return render(request, 'index.html', {'uid': uid, 'products': products, 'carts': carts, 'categories': categories})
 

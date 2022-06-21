@@ -155,20 +155,10 @@
                     <a href="{% url 'detail'%}" class="nav-item nav-link {% if request.path == "/detail" %} active {% endif %}">Shop Detail</a>
                     <a href="{% url 'cart'%}" class="nav-item nav-link {% if request.path == "/cart" %} active {% endif %}">Shopping Cart</a>
                     <a href="{% url 'checkout'%}" class="nav-item nav-link {% if request.path == "/checkout" %} active {% endif %}">Checkout</a>
-                
-                    {% comment %}  <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                        <div class="dropdown-menu rounded-0 m-0">
-                            <a href="{% url 'cart'%}" class="dropdown-item {% if request.path == "/cart" %} active {% endif %}">Shopping Cart</a>
-                            <a href="{% url 'checkout'%}" class="dropdown-item {% if request.path == "/checkout" %} active {% endif %}">Checkout</a>
-                        </div>
-                    </div>
-                    {% endcomment %} <a href="{% url 'contact'%} " class="nav-item nav-link {% if request.path == "/contact" %} active {% endif %} ">Contact</a>
+                 <a href="{% url 'contact'%} " class="nav-item nav-link {% if request.path == "/contact" %} active {% endif %} ">Contact</a>
                 </div>
                     {% if uid %}
                     <div class="navbar-nav ml-auto py-0">
-                    {% comment %} <a class="nav-item nav-link">{{uid.name}}</a> {% endcomment %}
-                    {% comment %} <a href="{% url 'ulogin' %}" class="nav-item nav-link">Login</a> {% endcomment %}
                     <div class="nav-item dropdown">
                       <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">  
                         {{uid.name}} 
@@ -197,6 +187,7 @@
                     {% else %}
                     <div class="navbar-nav ml-auto py-0">
                       <a href="{% url 'ulogin' %}" class="nav-item nav-link">Login</a>
+                      
                         <a href="{% url 'uregister' %}" class="nav-item nav-link">Register</a>
                     </div>
                     {% endif %}
@@ -255,8 +246,6 @@
             <h6 class="m-0">Categories</h6>
             <i class="fa fa-angle-down text-dark"></i>
           </a>
-          {% comment %} show  "collapse show navbar-expand-lg  navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" {% endcomment %}
-          {% comment %} hidden "collapse position-absolute navbar-expand-lg  navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light {% endcomment %}
           {% if request.path == "/" %}
           <nav
             class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" 
@@ -338,14 +327,7 @@
                     <a href="{% url 'cart'%}" class="nav-item nav-link {% if request.path == "/cart" %} active {% endif %}">Shopping Cart</a>
                     <a href="{% url 'checkout'%}" class="nav-item nav-link {% if request.path == "/checkout" %} active {% endif %}">Checkout</a>
                 
-                    {% comment %}  <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                        <div class="dropdown-menu rounded-0 m-0">
-                            <a href="{% url 'cart'%}" class="dropdown-item {% if request.path == "/cart" %} active {% endif %}">Shopping Cart</a>
-                            <a href="{% url 'checkout'%}" class="dropdown-item {% if request.path == "/checkout" %} active {% endif %}">Checkout</a>
-                        </div>
-                    </div>
-                    {% endcomment %} <a href="{% url 'contact'%} " class="nav-item nav-link {% if request.path == "/contact" %} active {% endif %} ">Contact</a>
+              <a href="{% url 'contact'%} " class="nav-item nav-link {% if request.path == "/contact" %} active {% endif %} ">Contact</a>
                 </div>
                 {% if uid %}
                 <div class="navbar-nav ml-auto py-0">
@@ -376,7 +358,7 @@
                 </div>
                 {% else %}
                 <div class="navbar-nav ml-auto py-0">
-                  <a href="{% url 'ulogin' %}" class="nav-item nav-link">Login</a>
+                  <a href="{% url 'ulogin' %}" class="nav-item nav-link">Login</a>                  
                     <a href="{% url 'uregister' %}" class="nav-item nav-link">Register</a>
                 </div>
                 {% endif %}

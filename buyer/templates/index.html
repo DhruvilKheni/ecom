@@ -58,7 +58,7 @@
           {{products|filter_categories:category.name}} Products
         </p>
         <a
-          href="/?category={{category.id}}"
+          href="shop/category/{{category.id}}/"
           class="cat-img position-relative overflow-hidden mb-3"
         >
           <img class="img-fluid" src="{{category.ipic.url}}" alt="" />
@@ -125,7 +125,7 @@
         <div
           class="card-header product-img position-relative overflow-hidden bg-transparent border p-0"
         >
-          <a href="/shop/{{product.pid}}/">
+          <a href="/shop/product/{{product.pid}}/">
             <img
               class="img-fluid w-100"
               src="{{product.ipic.url}}"

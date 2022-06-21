@@ -5,5 +5,6 @@ from buyer.views import shop
 urlpatterns = [
 
     path('', shop, name='shop'),
-    path('<slug:slug>/', views.product_detail),
+    path('product/<slug:slug>/', views.product_detail),
+    path('category/<slug:slug>/', views.category_detail),
 ]
