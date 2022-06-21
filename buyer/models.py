@@ -38,12 +38,14 @@ class Product(models.Model):
     pdes = models.CharField(max_length=200, default='')
     ptype = models.CharField(max_length=50)
     stock = models.IntegerField(default=0)
+    size = models.CharField(max_length=25, default="M")
+    color = models.CharField(max_length=25, default="White")
     ipic = models.ImageField(upload_to='media/product', default='avatar.jpg')
 
     def __str__(self):
         return self.pname
 
-    @staticmethod
+    @ staticmethod
     def get_all_products_by_categoty(category):
         if category:
             return Product.objects.filter(category=category)

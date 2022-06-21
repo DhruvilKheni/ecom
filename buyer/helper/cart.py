@@ -3,13 +3,13 @@ from urllib import request
 from buyer.models import *
 
 
-def add_to_cart(request):
+def add_to_cart(request, slug=None):
     if request.method == 'POST':
         try:
             uid = User.objects.get(email=request.session['email'])
             products = Product.objects.all()
             pid = request.POST.get('pid')
-            print(pid)
+
             product = Product.objects.get(pid=pid)
             quantity = 1
             customer = uid
@@ -31,7 +31,10 @@ def add_to_cart(request):
                     cid=uuid.uuid4()
                 )
             carts = Cart.objects.filter(customer=uid)
-            return {'uid': uid, 'carts': carts, 'products': products}
+            if slug == None:
+                return {'uid': uid, 'carts': carts, 'products': products}
+            else:
+                return {'uid': uid, 'carts': carts, 'product': product}
         except Exception as e:
             return {
                 "error": e

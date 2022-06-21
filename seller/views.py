@@ -33,6 +33,9 @@ def addproduct(request):
         product.category = Category.objects.get(name=request.POST['category'])
         product.pdes = request.POST['description']
         product.ptype = request.POST['product-type']
+        product.stock = request.POST['stock']
+        product.size = request.POST['size']
+        product.color = request.POST['color']
 
         if len(request.FILES) != 0:
             product.ipic = request.FILES['image']
