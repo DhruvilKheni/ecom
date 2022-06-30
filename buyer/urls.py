@@ -9,7 +9,9 @@ urlpatterns = [
     path('ulogout', views.ulogout, name='ulogout'),
     path('shop', views.shop, name='shop'),
     path('cart', views.cart, name='cart'),
-    path('detail', views.detail, name='detail'),
+    # path('detail', views.detail, name='detail'),
     path('checkout', views.checkout, name='checkout'),
     path('contact', views.contact, name='contact'),
+    path('product/<slug:slug>/', views.product_detail),
+    path('category/<slug:slug>/', views.category_detail),
 ]

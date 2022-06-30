@@ -34,13 +34,21 @@ def addproduct(request):
         product.pdes = request.POST['description']
         product.ptype = request.POST['product-type']
         product.stock = request.POST['stock']
-        product.size = request.POST['size']
-        product.color = request.POST['color']
+        size = Size()
+        # size.id = uuid.uuid4()
+        size.size = request.POST['size']
+        size.save()
+        color = Colors()
+        # color.id = uuid.uuid4()
+        color.color = request.POST['color']
+
+        color.save()
 
         if len(request.FILES) != 0:
             product.ipic = request.FILES['image']
 
         product.save()
+
         return render(request, 'add-product.html', {'categories': categories})
     else:
         return render(request, 'add-product.html', {'categories': categories})

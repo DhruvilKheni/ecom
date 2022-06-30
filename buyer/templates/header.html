@@ -152,7 +152,7 @@
                   <div class="navbar-nav mr-auto py-0">
                     <a href="{% url 'index'%}" class="nav-item nav-link {% if request.path == "/" %} active {% endif %}">Home</a>
                     <a href="{% url 'shop'%}" class="nav-item nav-link {% if request.path == "/shop" %} active {% endif %}">Shop</a>
-                    <a href="{% url 'detail'%}" class="nav-item nav-link {% if request.path == "/detail" %} active {% endif %}">Shop Detail</a>
+                    {% comment %} <a href="{% url 'detail'%}" class="nav-item nav-link {% if request.path == "/detail" %} active {% endif %}">Shop Detail</a> {% endcomment %}
                     <a href="{% url 'cart'%}" class="nav-item nav-link {% if request.path == "/cart" %} active {% endif %}">Shopping Cart</a>
                     <a href="{% url 'checkout'%}" class="nav-item nav-link {% if request.path == "/checkout" %} active {% endif %}">Checkout</a>
                  <a href="{% url 'contact'%} " class="nav-item nav-link {% if request.path == "/contact" %} active {% endif %} ">Contact</a>
@@ -323,7 +323,7 @@
                 <div class="navbar-nav mr-auto py-0">
                     <a href="{% url 'index'%}" class="nav-item nav-link {% if request.path == "/" %} active {% endif %}">Home</a>
                     <a href="{% url 'shop'%}" class="nav-item nav-link {% if request.path == "/shop" %} active {% endif %}">Shop</a>
-                    <a href="{% url 'detail'%}" class="nav-item nav-link {% if request.path == "/detail" %} active {% endif %}">Shop Detail</a>
+                    {% comment %} <a href="{% url 'detail'%}" class="nav-item nav-link {% if request.path == "/detail" %} active {% endif %}">Shop Detail</a> {% endcomment %}
                     <a href="{% url 'cart'%}" class="nav-item nav-link {% if request.path == "/cart" %} active {% endif %}">Shopping Cart</a>
                     <a href="{% url 'checkout'%}" class="nav-item nav-link {% if request.path == "/checkout" %} active {% endif %}">Checkout</a>
                 

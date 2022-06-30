@@ -27,6 +27,24 @@ class Category(models.Model):
         return self.name
 
 
+class Colors(models.Model):
+    id = models.CharField(
+        max_length=100, default=uuid.uuid4(), primary_key=True)
+    color = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.color
+
+
+class Size(models.Model):
+    id = models.CharField(
+        max_length=100, default=uuid.uuid4(), primary_key=True)
+    size = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.size
+
+
 class Product(models.Model):
 
     pname = models.CharField(max_length=50)
@@ -38,8 +56,10 @@ class Product(models.Model):
     pdes = models.CharField(max_length=200, default='')
     ptype = models.CharField(max_length=50)
     stock = models.IntegerField(default=0)
-    size = models.CharField(max_length=25, default="M")
-    color = models.CharField(max_length=25, default="White")
+    size = models.ForeignKey(Size,
+                             on_delete=models.CASCADE)
+    color = models.ForeignKey(Colors,
+                              on_delete=models.CASCADE)
     ipic = models.ImageField(upload_to='media/product', default='avatar.jpg')
 
     def __str__(self):
